@@ -1,10 +1,8 @@
 import React from 'react';
-
 import URLBlock from './URLBlock';
 import BodyBlock from './BodyBlock';
 import HeaderBlock from './BlockHeader';
 import NetworkBlock from './BlockNetwork';
-
 
 interface CardProps {
    data: { 
@@ -14,12 +12,9 @@ interface CardProps {
    deleteRequest: (id:string) => void;
  }
 
- 
- let networkClass = 'border-solid border-2 border-red-500 p-2 m-2 text-xs flex-grow'
-
+let networkClass = 'border-solid border-2 border-red-500 p-2 m-2 text-xs flex-grow'
 
 const Blocks: React.FC<CardProps> = ({ data, deleteRequest }) => {
- 
   return (
     <div key={data.id} className="border-solid border-2 border-black p-2 m-5" >
       <h2>Request id: {data.id} {data.Datetime}</h2>
@@ -28,7 +23,7 @@ const Blocks: React.FC<CardProps> = ({ data, deleteRequest }) => {
       </div>
       <div className="border-red-500 p-2 mt-2.5 flex flex-row flex-nowrap justify-between">
        <div className='techdata w-1/2'>
-           <URLBlock title="URL" url={data.URL.toString()} outerclass={networkClass}/>
+           <URLBlock title="URL" url={data.URL ? data.URL.toString() : ''} outerclass={networkClass}/>
            <NetworkBlock title="Network:" entries={Object.entries(data.Network || {})} outerclass={networkClass}/>
            <HeaderBlock  title="Request Headers:" entries={Object.entries(data.Request_Headers || {})} outerclass={networkClass}/>
        </div>
@@ -37,6 +32,6 @@ const Blocks: React.FC<CardProps> = ({ data, deleteRequest }) => {
        </div>
       </div >
     </div>);
- }
+}
 
- export default Blocks
+export default Blocks;

@@ -30,13 +30,19 @@ interface CatchProps {
 }
 
 
-const Catch: React.FC<CatchProps> = ({ requests, deleteRequest }) => (
-  <div className="flex flex-col flex-wrap justify-start min-w-80">
-    {requests.length > 0 ?
-      requests.map(data => <Blocks data={data} deleteRequest={deleteRequest} key={data.id}/>) :
-      <p>No requests stored in Redis.</p>}
-  </div>
-);
+const Catch: React.FC<CatchProps> = ({ requests, deleteRequest }) => {
+  console.log(requests)
+  return (
+    <div className="flex flex-col flex-wrap justify-start min-w-80">
+      {requests.length > 0 ?
+        requests.map(data => <Blocks data={data} deleteRequest={deleteRequest} key={data.id}/>) :
+        <p>No requests stored in Redis.</p>}
+    </div>
+  );
+
+}
+
+
 
 
 export default Catch;
