@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import Root from './Root';
+import Root from './router/Root';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -10,6 +10,7 @@ import {
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import Sender from './pages/Sender/Sender';
 import Documentation from './pages/Documentation/Documentation';
+import Automation from "./pages/Automation/Automation";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,11 @@ const router = createBrowserRouter([
       {
         path: "/docd",
         element: <Documentation/>,
+        errorElement:<ErrorPage />
+      },
+      {
+        path: "/automation",
+        element: <Automation/>,
         errorElement:<ErrorPage />
       },
     ],

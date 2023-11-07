@@ -28,6 +28,7 @@ const Header = () => {
         <ul className="flex space-x-4">
           <li><NavLink to="/home" className="text-white hover:text-gray-300" activeClassName="underline">Home</NavLink></li>
           <li><NavLink to="/sender" className="text-white hover:text-gray-300" activeClassName="underline">Sender</NavLink></li>
+          <li><NavLink to="/automation" className="text-white hover:text-gray-300" activeClassName="underline">Automation test</NavLink></li>
           <li><NavLink to="/docd" className="text-white hover:text-gray-300" activeClassName="underline">Documentation</NavLink></li>
         </ul>
       </nav>

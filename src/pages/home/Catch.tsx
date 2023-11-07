@@ -31,7 +31,7 @@ interface CatchProps {
 
 
 const Catch: React.FC<CatchProps> = ({ requests, deleteRequest }) => {
-  console.log(requests)
+  // console.log(requests)
   return (
     <div className="flex flex-col flex-wrap justify-start min-w-80">
       {requests.length > 0 ?

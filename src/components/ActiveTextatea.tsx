@@ -3,12 +3,13 @@ import React, { ChangeEvent, useRef, useEffect } from "react";
 interface ActiveTextAreaProps {
   value: {
     isValid: boolean;
-    body: string;
+    text: string;
   };
   handleChange: (val: string) => void;
 }
 
 const ActiveTextArea: React.FC<ActiveTextAreaProps> = ({ value, handleChange }) => {
+
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -17,8 +18,9 @@ const ActiveTextArea: React.FC<ActiveTextAreaProps> = ({ value, handleChange }) 
       textAreaNode.style.height = "auto";
       textAreaNode.style.height = textAreaNode.scrollHeight > 350 ? "350px" : `${textAreaNode.scrollHeight}px`;
     }
-  }, [value.body]);
+  }, [value.text]);
 
+console.log(typeof(value.text))
   return (
     <textarea
       ref={textAreaRef}
@@ -26,12 +28,15 @@ const ActiveTextArea: React.FC<ActiveTextAreaProps> = ({ value, handleChange }) 
         overflow: "auto", // Changed from 'hidden' to 'auto'
         resize: "none"
       }}
-      className={`border-4 p-2 shadow-xl text-xs ${value.isValid ? 'border-green-500' : 'border-red-500 '}`}
-      value={value.body}
+      className={`w-3/4 border-2 p-2  text-xs ${value.isValid ? 'border-green-500' : 'border-red-500 '}`}
+      // value={JSON.stringify(value.text, null, 2)}
+      value={value.text}
       onChange={(e: ChangeEvent<HTMLTextAreaElement>) => handleChange(e.target.value)}
+      // onChange={e=>value.s}
       placeholder="Request Body"
     />
   );
 };
 
 export default ActiveTextArea;
+

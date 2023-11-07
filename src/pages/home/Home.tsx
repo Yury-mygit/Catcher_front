@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { sendTestRequest, getAllRequests } from '../api/api'; // import your function
+import { sendTestRequest, getAllRequests } from '../../api/api'; // import your function
 import Welcome from './Welcome';
 import Catch from './Catch';
-import { Network, RequestData, Props } from '../../types';
+import { Network, RequestData, Props } from '../../interfaces/types';
 
 
 

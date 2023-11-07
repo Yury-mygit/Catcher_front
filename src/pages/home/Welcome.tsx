@@ -1,6 +1,6 @@
 // Welcome.tsx
 import React from 'react';
-import { sendTestRequest } from '../api/api';  // adapt path as necessary
+import { sendTestRequest } from '../../api/api';  // adapt path as necessary
 
 interface WelcomeProps {
   setRequests: React.Dispatch<React.SetStateAction<any[]>>;

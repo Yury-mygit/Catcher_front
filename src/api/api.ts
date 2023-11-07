@@ -1,6 +1,6 @@
 // api.ts
-import axios from 'axios';
-import { Network, RequestData, Props } from '../../types';
+import axios, { AxiosError } from 'axios';
+import { Network, RequestData, Props } from '../interfaces/types';
 
 
 export const sendTestRequest = () => {
@@ -51,4 +51,20 @@ export const getAllRequests = async () => {
   
     return responseObj;
   };
-  
+
+
+interface ResponseType {
+  [key: string]: any;
+}
+
+const sendRequest = async (url: string, method: string, body: string): Promise<ResponseType> => {
+  try {
+    const res = await axios({ url, method, data: body });
+    return res.data;
+  } catch (error) {
+    const axiosError = error as AxiosError;
+    return { error: axiosError.message };
+  }
+};
+
+export default sendRequest;
