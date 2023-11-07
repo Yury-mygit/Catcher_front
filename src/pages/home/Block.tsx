@@ -34,4 +34,7 @@ const Blocks: React.FC<CardProps> = ({ data, deleteRequest }) => {
     </div>);
 }
 
+
+
+
 export default Blocks;
