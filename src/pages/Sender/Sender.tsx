@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios, { AxiosError } from 'axios';
-import ActiveTextArea from '../../components/activeTextatea'
+import ActiveTextArea from '../../components/ActiveTextatea'
+import SelectMethod from "../../components/SelectMethods";
 
 const isJson = (str: string) => {
   try {
@@ -61,28 +62,13 @@ const Sender = () => {
     }
   }
 
-    // const [textAreaHeight, setTextAreaHeight] = useState('auto');
-
-  // useEffect(() => {
-  //   const textAreaElement = document.getElementById('requestBody');
-  //   if (textAreaElement) {
-  //     let newHeight = `${textAreaElement.scrollHeight}px`;
-  //     if (textAreaElement.scrollHeight > 500) {
-  //       newHeight = '500px';
-  //     }
-  //     setTextAreaHeight(newHeight);
-  //   }
-  // }, [body]);
-
   return (
     <div className="flex flex-col space-y-2 max-w-3xl mx-auto">
-      <input className="border p-2" type="text" value={url} onChange={e => setUrl(e.target.value)} placeholder="URL" />
-      <select value={method} onChange={e => setMethod(e.target.value)} style={{ border: '1px solid black' }}>
-        <option value="GET">GET</option>
-        <option value="POST">POST</option>
-        <option value="PUT">PUT</option>
-        <option value="DELETE">DELETE</option>
-      </select>
+      <div className={"flex"}>
+        <input className="border p-2 text-xs grow" type="text" value={url} onChange={e => setUrl(e.target.value)} placeholder="URL" />
+        <SelectMethod value={method} onChange={setMethod}/>
+      </div>
+
       <ActiveTextArea value={{ isValid, body }} handleChange={handleChange} />
       <span>{dataType}</span>
       <button className="border p-2" onClick={sendRequest}>Send</button>
@@ -95,3 +81,26 @@ const Sender = () => {
 }
 
 export default Sender;
+
+
+      // <select value={method} onChange={e => setMethod(e.target.value)} style={{ border: '1px solid black' }}>
+      //   <option value="GET">GET</option>
+      //   <option value="POST">POST</option>
+      //   <option value="PUT">PUT</option>
+      //   <option value="DELETE">DELETE</option>
+      // </select>
+
+
+
+    // const [textAreaHeight, setTextAreaHeight] = useState('auto');
+
+  // useEffect(() => {
+  //   const textAreaElement = document.getElementById('requestBody');
+  //   if (textAreaElement) {
+  //     let newHeight = `${textAreaElement.scrollHeight}px`;
+  //     if (textAreaElement.scrollHeight > 500) {
+  //       newHeight = '500px';
+  //     }
+  //     setTextAreaHeight(newHeight);
+  //   }
+  // }, [body]);
