@@ -2,7 +2,7 @@
 
 import Validator from '../validators/validator';
 
-const handleInputChange = (
+const handleInputChange1 = (
     data: string,
     setText: React.Dispatch<React.SetStateAction<string>>,
     setIsValid: React.Dispatch<React.SetStateAction<boolean>>,
@@ -32,6 +32,6 @@ const handleInputChange = (
   }
 };
 
-export default handleInputChange;
+export default handleInputChange1;
 
 

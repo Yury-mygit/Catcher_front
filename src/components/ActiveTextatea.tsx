@@ -4,6 +4,8 @@ interface ActiveTextAreaProps {
   value: {
     isValid: boolean;
     text: string;
+    body:string;
+    format:string;
   };
   handleChange: (val: string) => void;
 }
@@ -20,7 +22,13 @@ const ActiveTextArea: React.FC<ActiveTextAreaProps> = ({ value, handleChange }) 
     }
   }, [value.text]);
 
-console.log(typeof(value.text))
+  // const options = { compact: true, ignoreComment: true, spaces: 4 };
+  // const xml = js2xml(json, options);
+  //
+  // let a
+
+  // if (value.format == 'JSON') a =
+
   return (
     <textarea
       ref={textAreaRef}

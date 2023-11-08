@@ -12,6 +12,7 @@
     "@types/react": "^18.2.35",
     "@types/react-dom": "^18.2.14",
     "axios": "^1.6.0",
+    "buffer": "^6.0.3",
     "dotenv": "^16.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -19,7 +20,8 @@
     "react-scripts": "5.0.1",
     "react-syntax-highlighter": "^15.5.0",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "xml-js": "^1.6.11"
   },
   "scripts": {
     "start": "react-scripts start",

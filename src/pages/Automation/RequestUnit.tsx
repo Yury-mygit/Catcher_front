@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import axios, { AxiosError } from 'axios';
 import sendRequest from "../../api/api";
-import ActiveTextArea from '../../components/ActiveTextatea'
-import SelectMethod from "../../components/SelectMethods";
-import handleInputChange from '../../components/handleInputChange';
+import ActiveTextArea from '../../components/ActiveTextatea';
 import Validator from "../../validators/validator";
+import { Methods } from "./Methods";
+import { RequestBar } from "./RequestBar";
+import { ButtonGroup } from "./ButtonGrope";
 
 interface RequestUnitProps {
   data: any; // Replace with the type of your data
 }
-const RequestUnit = ({data}:RequestUnitProps) => {
 
-  interface ResponseType {
+interface ResponseType {
   [key: string]: any;
 }
 
 
+const RequestUnit = ({ data }: RequestUnitProps) => {
+
+  const [title, setTitle] = useState("Title of component");
   const [url, setUrl] = useState('');
   const [method, setMethod] = useState('GET');
+  const [params, setParams] = useState('');
+  const [headers, setHeaders] = useState('');
+  const [authorization, setAuthorization] = useState('');
   const [body, setBody] = useState('');
   const [text, setText] = useState('');
   const [response, setResponse] = useState<ResponseType | null>(null);
@@ -25,93 +30,73 @@ const RequestUnit = ({data}:RequestUnitProps) => {
   const [format, setFormat] = useState('JSON');
   const [dataType, setDataType] = useState('Data is not valid');
 
-
   const handleSendRequest = async () => {
     const res = await sendRequest(url, method, body);
     setResponse(res);
   };
 
+  const handleTextChange = (data: string) => {
+    setText(data);
+    let a = Validator.validate(data);
+    if (a !== false) {
+      setIsValid(true);
+      setDataType('Data is valid');
+      setBody(a.data);
+    } else {
+      setIsValid(false);
+      setDataType('Data is not valid');
+    }
+  };
 
 
   useEffect(() => {
-
-    setUrl(data.url)
-
-    setBody(data.body)
-     setIsValid(true)
-            setDataType('Data is valid')
-    setText(JSON.stringify(data.body, null, 2));
+    setTitle(data.title || "Title of component");
+    setUrl(data.url || '');
+    setMethod(data.method || 'GET');
+    setParams(data.params || '');
+    setHeaders(data.headers || '');
+    setAuthorization(data.authorization || '');
+    setBody(data.body || '');
+    setText(JSON.stringify(data.body, null, 2) || '');
+    setResponse(data.response || null);
+    setIsValid(data.isValid || false);
+    setFormat(data.format || 'JSON');
+    setDataType(data.dataType || 'Data is not valid');
   }, []);
 
-
-
   return (
-  <div className={"RequestUnit_wrapper flex grow flex-row mb-5 m-10"}>
-    <div className={"request flex flex-col mr-5"} style={{ flex: 2 }}>
-      <div className={"flex h-10 mb-2"}>
-        <SelectMethod value={method} onChange={setMethod}/>
-        <input className="border p-2 text-xs grow" type="text" value={url} onChange={e => setUrl(e.target.value)} placeholder="URL" />
-        <button className="border p-2 w-20  text-xs" onClick={handleSendRequest}>Send</button>
-        <div className="text-xs w-32 flex items-center justify-center">{dataType}</div>
-      </div>
+    <div className="RequestUnit_wrapper flex grow flex-col mb-5 m-10">
+      <h1 className="text-2xl">{title}</h1>
       <div className="flex flex-row">
-         <div className="flex flex-col justify-between pl-2 pr-2 mb-2">
-        <button className="text-left">Params</button>
-        <button className="text-left">Authorization</button>
-        <button className="text-left">Header</button>
-        <button className="text-left">Body</button>
-        <button className="text-left">Pre-request Script</button>
-        <button className="text-left">Post-request Scripts</button>
-        <button className="text-left">Tests</button>
-
+        <div className="request flex flex-col mr-5" style={{ flex: 2 }}>
+        <div className="flex flex-row">
+          <div className="controls flex flex-col pl-2 pr-2 mb-2">
+            <RequestBar
+              method={method}
+              setMethod={setMethod}
+              url={url}
+              setUrl={setUrl}
+              handleSendRequest={handleSendRequest}
+              dataType={dataType}
+            />
+            <div className="flex flex-row">
+              <ButtonGroup />
+              <Methods id={data.id} format={format} setFormat={setFormat} />
+            </div>
+          </div>
+          <ActiveTextArea value={{ isValid, text , body, format}} handleChange={handleTextChange} />
         </div>
-
-      <div className="flex flex-col grow justify-around pl-2 pr-2 mb-2">
-
-
-          <button className={`w-32 ${format === 'JSON' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}>JSON</button>
-          <button className={`w-32 ${format === 'FORMDATA' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}>FORM DATA</button>
-          <button className={`w-32 ${format === 'XML' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}>XML</button>
-
+      </div>
+      <div className="response flex flex-col border-0 border-amber-950 border-solid text-xs " style={{ flex: 1 }}>
+        {response && <pre>{JSON.stringify(response, null, 2)}</pre>}
+      </div>
       </div>
 
-         <ActiveTextArea value={{ isValid, text }} handleChange={
-        (data) => {
-          setText(data);
-          let a = Validator.validate(data)
-          if (a !== false){
-            setIsValid(true)
-            setDataType('Data is valid')
-            setBody(a.data)
-          }
-          else {
-            setIsValid(false)
-            setDataType('Data is not valid')
-          }
-
-        }
-      } />
-      </div>
-
-
-
-
-
-
-
-
-
-      {response && <div className="p-2 border">{JSON.stringify(response)}</div>}
-
-
     </div>
-
-    <div className={"response flex flex-col border-4 border-amber-950 border-solid text-xs"} style={{ flex: 1 }}>
-      sdadsdadad
-    </div>
-  </div>
-
   );
 }
 
 export default RequestUnit;
+
+
+//  {/*{response && <pre>{JSON.stringify(JSON.parse(response), null, 2)}</pre>}*/}
