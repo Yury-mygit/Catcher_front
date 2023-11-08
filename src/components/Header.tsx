@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -21,15 +21,21 @@ const Header = () => {
     e.stopPropagation();
   };
 
+   const location = useLocation();
+
+  const getNavLinkClass = (path: string) => {
+    return location.pathname === path ? "text-white hover:text-gray-300 underline" : "text-white hover:text-gray-300";
+  };
+
   return (
     <header className="p-5 bg-blue-500 flex justify-between items-center">
       <NavLink to="/home" className="text-white hover:text-gray-300">Tester</NavLink>
       <nav>
         <ul className="flex space-x-4">
-          <li><NavLink to="/home" className="text-white hover:text-gray-300" activeClassName="underline">Home</NavLink></li>
-          <li><NavLink to="/sender" className="text-white hover:text-gray-300" activeClassName="underline">Sender</NavLink></li>
-          <li><NavLink to="/automation" className="text-white hover:text-gray-300" activeClassName="underline">Automation test</NavLink></li>
-          <li><NavLink to="/docd" className="text-white hover:text-gray-300" activeClassName="underline">Documentation</NavLink></li>
+          <li><NavLink to="/home" className={getNavLinkClass("/home")}>Home</NavLink></li>
+          <li><NavLink to="/sender" className={getNavLinkClass("/sender")}>Sender</NavLink></li>
+          <li><NavLink to="/automation" className={getNavLinkClass("/automation")}>Automation test</NavLink></li>
+          <li><NavLink to="/docd" className={getNavLinkClass("/docd")}>Documentation</NavLink></li>
         </ul>
       </nav>
       <button className="text-white hover:text-gray-300" onClick={handleLoginClick}>Log in</button>
