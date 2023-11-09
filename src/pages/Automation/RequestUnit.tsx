@@ -17,7 +17,7 @@ interface ResponseType {
 
 const RequestUnit = ({ data }: RequestUnitProps) => {
 
-  const [title, setTitle] = useState("Title of component");
+  // const [title, setTitle] = useState("Title of component");
   const [url, setUrl] = useState('');
   const [method, setMethod] = useState('GET');
   const [params, setParams] = useState('');

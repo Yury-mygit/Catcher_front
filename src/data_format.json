@@ -1,0 +1,53 @@
+{
+  "type": "pack",
+  "type_data": {
+      "id": 34,
+      "title": "",
+      "desc": "",
+      "user_id": ""
+  },
+  "units" : [
+      {
+        "sequence": 0,
+        "id": 234,
+        "title": "Title of component",
+        "type":"RequestUnit",
+        "url":"http://api.sphere.com:801/fake-users/5",
+        "method": "POST",
+        "params": {
+          "param1":"one",
+          "param2":"data",
+          "param3":"one",
+          "param4":"one",
+          "param5":["one", "two"]
+        },
+        "headers": {},
+        "authorization": {},
+        "format": "JSON"
+      },
+     {
+        "sequence": 1,
+        "id": 243,
+        "title": "Title of component",
+        "type":"RequestUnit",
+        "url":"http://api.sphere.com:801/fake-users/5",
+        "method": "POST",
+        "params": {},
+        "headers": {},
+        "authorization": {},
+        "format": "JSON"
+      },
+     {
+        "sequence": 2,
+        "id": 244,
+        "title": "Title of component",
+        "type":"RequestUnit",
+        "url":"http://api.sphere.com:801/fake-users/5",
+        "method": "POST",
+        "params": {},
+        "headers": {},
+        "authorization": {},
+        "format": "JSON"
+      }
+  ]
+}
