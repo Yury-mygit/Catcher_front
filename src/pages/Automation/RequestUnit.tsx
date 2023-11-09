@@ -50,7 +50,7 @@ const RequestUnit = ({ data }: RequestUnitProps) => {
 
 
   useEffect(() => {
-    setTitle(data.title || "Title of component");
+    // setTitle(data.title || "Title of component");
     setUrl(data.url || '');
     setMethod(data.method || 'GET');
     setParams(data.params || '');
@@ -66,7 +66,7 @@ const RequestUnit = ({ data }: RequestUnitProps) => {
 
   return (
     <div className="RequestUnit_wrapper flex grow flex-col mb-5 m-10">
-      <h1 className="text-2xl">{title}</h1>
+      <h1 className="text-2xl">{data.title}</h1>
       <div className="flex flex-row">
         <div className="request flex flex-col mr-5" style={{ flex: 2 }}>
         <div className="flex flex-row">
