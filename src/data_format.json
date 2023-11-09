@@ -43,7 +43,7 @@
         "title": "Title of component",
         "type":"RequestUnit",
         "url":"http://api.sphere.com:801/fake-users/5",
-        "method": "POST",
+        "method": "GET",
         "params": {},
         "headers": {},
         "authorization": {},
